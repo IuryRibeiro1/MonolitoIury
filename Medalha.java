@@ -2,42 +2,20 @@ package monolito;
 
 public class Medalha {
 	
-	private int mmrInicial;
-	private int mmrFinal;
-	private double preco;
+	private int mmr;
 	
 	
-	public Medalha(int mmrInicial, int mmrFinal, double preco) {
-		this.mmrInicial = mmrInicial;
-		this.mmrFinal = mmrFinal;
-		this.preco = preco;
+	
+	public Medalha(int mmr) {
+		this.mmrInicial = mmr;
 	}
 	
-	public int getMmrInicial() {
-		return this.mmrInicial;
+	public int getMmr() {
+		return this.mmr;
 	}
 	
-	public void setMmr(int mmrInicial) {
-		this.mmrInicial = mmrInicial;
-	}
-	public int getMmrFinal() {
-		return this.mmrFinal;
-	}
-	
-	public void setMmrFinal(int mmrFinal) {
-		this.mmrFinal = mmrFinal;
-	
-	}
-	public double getPreco() {
-		return this.preco;
-	}
-	
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-	
-	public calcularMmr(int mmrInicial, int mmrFinal) {
-		return mmrFinal - mmrInicial; 
+	public void setMmr(int mmr) {
+		this.mmr = mmr;
 	}
 	
 }
