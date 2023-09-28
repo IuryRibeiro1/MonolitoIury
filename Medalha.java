@@ -36,4 +36,8 @@ public class Medalha {
 		this.preco = preco;
 	}
 	
+	public calcularMmr(int mmrInicial, int mmrFinal) {
+		return mmrFinal - mmrInicial; 
+	}
+	
 }
