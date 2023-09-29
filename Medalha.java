@@ -3,11 +3,12 @@ package monolito;
 public class Medalha {
 	
 	private int mmr;
+	private int mmrFinal;
 	
 	
-	
-	public Medalha(int mmr) {
-		this.mmrInicial = mmr;
+	public Medalha(int mmr, int mmrFinal) {
+		this.mmr = mmr;
+		this.mmrFinal = mmrFinal
 	}
 	
 	public int getMmr() {
@@ -16,6 +17,14 @@ public class Medalha {
 	
 	public void setMmr(int mmr) {
 		this.mmr = mmr;
+	}
+	
+	public int getMmrFinal() {
+		return this.mmrFinal;
+	}
+	
+	public void setMmrFinal(int mmrFinal) {
+		this.mmrFinal = mmrFinal;
 	}
 	
 }
