@@ -1,13 +1,19 @@
 package monolito;
 
 public class Usuario {
-
+	
 	private long id;
 	private String nome;
 	private String email;
 	private String cpf;
 	private String endereco;
 	private String cep;
+	
+	
+	
+	public Usuario() {
+		
+	}
 	
 	public Usuario(long id, String nome, String email, String cpf, String endereco, String cep) {
 		this.id = id;
@@ -68,4 +74,9 @@ public class Usuario {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	public String imprimir() {
+		return "Nome:" + this.nome;
+	}
+	
 }
