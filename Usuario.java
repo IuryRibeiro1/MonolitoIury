@@ -15,7 +15,7 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(long id, String nome, String email, String cpf, String endereco, String cep) {
+	public Usuario(long id, String nome, String email, String cpf, String endereco, String cep) throws Exception {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -23,6 +23,10 @@ public class Usuario {
 		this.endereco = endereco;
 		this.cep = cep;
 
+		
+		if(nome.isEmpty() || email.isEmpty() || cpf.isEmpty() || endereco.isEmpty() || cep.isEmpty()) {
+			throw new Exception("Preencha todos os campos ");
+		}
 	
 	
 	}

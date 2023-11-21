@@ -8,18 +8,24 @@ public class Medalha {
 	
 	
 	
+	public Medalha() {
+		
+	}
 	
-	public Medalha(String nome, Long mmrInicial, Long mmrFinal) {
+	
+	public Medalha(String nome, Long mmrInicial, Long mmrFinal) throws Exception {
 		this.nome = nome;
 		this.mmrInicial = mmrInicial;
 		this.mmrFinal = mmrFinal;
 		
 		
-	}
-	
-	public Medalha() {
+		if(mmrInicial > mmrFinal) {
+			throw new Exception("O mmr Inicial não pode ser maior que o mmr Final");
+		}
 		
 	}
+	
+	
 	
 	public Medalha(String nome) {
 		this.nome = nome;

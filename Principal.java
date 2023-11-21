@@ -4,26 +4,57 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
+import CadastroUsuario.ClienteMap;
+import CadastroUsuario.iCadastroUsuario;
+
 /**
  * @author Iury
  */
 
 public class Principal {
 
-	public static void main(String[] args) {
+	private static iCadastroUsuario ICadastroUsuario;
+	
+	public static void main(String[] args) throws Exception {
+		
+		ICadastroUsuario = new ClienteMap();
 	
 		Scanner sc = new Scanner(System.in);
 		
-		
 		Medalha medalha = new Medalha();
 		
+		String app = JOptionPane.showInputDialog(null, "Selecione uma opção: 1 Cadastrar, 2 Coach, 3 Boost, 4 Calibração", "", JOptionPane.INFORMATION_MESSAGE);
 		
-		System.out.println("Insira o seu mmr: ");
+		
+		while(!isOpcaoValida(app )) {
+			if("".equals(app)) {
+				sair();
+			}
+			
+			app = JOptionPane.showInputDialog(null, "Selecione uma opção: 1 Cadastrar, 2 Coach, 3 Boost, 4 Calibração", "", JOptionPane.INFORMATION_MESSAGE);
+			
+		}
+		
+		while(isOpcaoValida(app)) {
+			if(isCadastrar(app)) {
+				 app = JOptionPane.showInputDialog(null, "Preencha os campos separados por , EX: Nome, Email, CPF, Endereço, CEP", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+				
+				 cadastrarUsuario(app);
+				 
+				 app = JOptionPane.showInputDialog(null, "Selecione uma opção: 1 Cadastrar, 2 Coach, 3 Boost, 4 Calibração", "", JOptionPane.INFORMATION_MESSAGE);
+				 
+			}else if(isBoost(app)) {
+				 app = JOptionPane.showInputDialog(null,"Informe o seu mmr Inicial", "Boost", JOptionPane.INFORMATION_MESSAGE);
+				 
+				 listaDeMedalhasParaOClienteOlharOsRankings();
+			}
+			
+		}
 		
 		medalha.setMmrInicial(sc.nextLong());
 		
-		
-		listaDeMedalhasParaOClienteOlharOsRankings();
 	
 		List<Medalha> listaDeMedalha = listaDeMedalhasParaOClienteOlharOsRankings();
 		
@@ -42,10 +73,62 @@ public class Principal {
 				if(medalha.getMmrFinal() > listaDeMedalhasMmrFinal.getMmrInicial() && medalha.getMmrFinal() <= listaDeMedalhasMmrFinal.getMmrFinal() ) {
 					System.out.println(listaDeMedalhasMmrFinal.getNome());
 	}
-
+		}
 			}
+	
+
+
+	private static boolean isBoost(String app) {
+		if("3".equals(app)) {
+			return true;
+		}
+		return false;
 	}
-	private static List listaDeMedalhasParaOClienteOlharOsRankings() {
+
+
+
+	private static void cadastrarUsuario(String app) {
+		String[] dadosSeparados = app.split(",");
+		Usuario usuario = null;
+		try {
+			usuario = new Usuario(0, dadosSeparados[0], dadosSeparados[1], dadosSeparados[2], dadosSeparados[3], dadosSeparados[4]);
+		} catch (Exception erro) {
+			app = JOptionPane.showInputDialog(null, erro.getMessage() , "Erro", JOptionPane.INFORMATION_MESSAGE);
+		}
+		Boolean isCadastrado = ICadastroUsuario.Cadastrar(usuario);
+		if(isCadastrado) {
+			app = JOptionPane.showInputDialog(null, "Cliente Cadastrado com Sucesso", "", JOptionPane.INFORMATION_MESSAGE);
+		}else {
+			app = JOptionPane.showInputDialog(null, "Cliente já Cadastrado", "Erro", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+
+
+	private static boolean isCadastrar(String app) {
+		if("1".equals(app)) {
+			return true;
+		}
+		return false;
+	}
+
+
+
+	//Método criado para sair do Sistema
+	private static void sair() {
+		String app = JOptionPane.showInputDialog(null, "Até logo! ", "Sair", JOptionPane.INFORMATION_MESSAGE);
+		System.exit(0);
+		
+	}
+	//Método criado para um laço while até o usuário selecionar a opção correta
+	private static boolean isOpcaoValida(String app) {
+		if("1".equals(app) || "2".equals(app) || "3".equals(app) || "4".equals(app)){
+			return true;
+		}
+		return false;
+	}
+	//Método criado para adicionar as medalhas na Lista
+	private static List listaDeMedalhasParaOClienteOlharOsRankings() throws Exception {
 		
 		
 		
